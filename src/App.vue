@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+      <h2>龙哥666666</h2>
       <h3>
         二零二零，开年大吉！
       </h3>
