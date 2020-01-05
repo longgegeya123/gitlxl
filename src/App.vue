@@ -5,13 +5,39 @@
         二零二零，开年大吉！
       </h3>
       <h6>万事如意</h6>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    </div>
+    <div class="imgBra">
+      <ul>
+        <li v-for="(item, key) in this.arr" :key="key">
+          <img :src="item.pic" />
+          <p>{{ item.name }}</p>
+        </li>
+      </ul>
     </div>
     <router-view />
   </div>
 </template>
-
+<script>
+import Product from "../src/components/AxiosBos/product/product_ser";
+const _product = new Product();
+export default {
+  data(){
+    return {
+      arr: this.$store.state.list
+    };
+  },
+  mounted() {
+    _product.shopImg().then(res => {
+      // eslint-disable-next-line no-console
+      console.log(res);
+      let arr = res.data.data;
+      // eslint-disable-next-line no-console
+      console.log(arr)
+      this.$store.commit("addCart", arr);
+    });
+  }
+};
+</script>
 <style lang="scss">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -30,6 +56,33 @@
 
     &.router-link-exact-active {
       color: #42b983;
+    }
+  }
+  animation: move 0.5s linear infinite;
+}
+@keyframes move {
+  100% {
+    color: salmon;
+  }
+  80%{
+    color: gold;
+  }
+  60% {
+    color: deeppink;
+  }
+}
+
+ul{
+  list-style: none;
+  li{
+    height: 100%;
+    width: 100%;
+    img{
+      border: 1px solid darkcyan;
+      border-radius: 8px;
+      padding: 10px;
+      width: 180px;
+      height: 180px;
     }
   }
 }
