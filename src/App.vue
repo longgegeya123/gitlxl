@@ -4,6 +4,7 @@
       <h3>
         二零二零，开年大吉！
       </h3>
+      <h6>万事如意</h6>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
